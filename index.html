@@ -676,6 +676,9 @@
                                 <i class="fas fa-paper-plane"></i>
                             </button>
                         </form>
+                        <p id="success-message" class="text-green-400 hidden mt-4">
+                            ✅ Message sent successfully!
+                        </p>
                     </div>
 
                     <!-- Contact Info -->
@@ -783,8 +786,13 @@
 
             emailjs.sendForm("service_4oy8sf7", "template_ikm1n7i", this)
                 .then(function () {
-
+                    document.getElementById("success-message").classList.remove("hidden");
                     form.reset();
+
+                    // Optionally hide it after 5 seconds
+                    setTimeout(() => {
+                        document.getElementById("success-message").classList.add("hidden");
+                    }, 5000);
                 }, function (error) {
                     alert("Failed to send message. Please try again.");
                     console.error(error);
